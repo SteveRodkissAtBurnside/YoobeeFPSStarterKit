@@ -645,7 +645,7 @@ Transform:
   - {fileID: 800801402}
   - {fileID: 1175834054}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &178413969
 Mesh:
@@ -3675,6 +3675,12 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!4 &783181272 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2105265080, guid: c331e05d46a1e924d9e28826599d7832,
+    type: 3}
+  m_PrefabInstance: {fileID: 2470148969862104750}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &800801401
 GameObject:
   m_ObjectHideFlags: 0
@@ -4297,6 +4303,29 @@ Transform:
   m_Father: {fileID: 47940245}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &905372956 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2470148969825441885, guid: c331e05d46a1e924d9e28826599d7832,
+    type: 3}
+  m_PrefabInstance: {fileID: 2470148969862104750}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &905372964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 905372956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ce1e13c27de29743a1128f6db04211d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingMunerOfGrenades: 3
+  grenadePrefab: {fileID: 6502261404483268454, guid: 50c1cc9f0c7a9d94193a554d40a21e16,
+    type: 3}
+  spawnPosition: {fileID: 783181272}
+  launchForce: 10
 --- !u!1 &964885174
 GameObject:
   m_ObjectHideFlags: 0
@@ -10215,6 +10244,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerHud
       objectReference: {fileID: 0}
+    - target: {fileID: 112043928987560334, guid: 7f62ed03aa55bec4b9700008331ac38a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 112043928987560369, guid: 7f62ed03aa55bec4b9700008331ac38a,
         type: 3}
       propertyPath: m_Camera
@@ -10722,7 +10756,7 @@ PrefabInstance:
     - target: {fileID: 7234785500085490112, guid: 393f0e2177e43d14c8b66b8bc72dfc4e,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7234785500085490112, guid: 393f0e2177e43d14c8b66b8bc72dfc4e,
         type: 3}
