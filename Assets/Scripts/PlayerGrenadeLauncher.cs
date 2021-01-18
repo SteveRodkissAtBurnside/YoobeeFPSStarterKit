@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class PlayerGrenadeLauncher : MonoBehaviour
 {
-    public int startingMunerOfGrenades = 3;
-    int numGrenades  = 3;
+    public int startingNumberOfGrenades = 3;
+    [SerializeField]
+    private int numGrenades  = 3;
 
     public Rigidbody grenadePrefab;
     public Transform spawnPosition;
@@ -14,7 +15,7 @@ public class PlayerGrenadeLauncher : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        numGrenades = startingMunerOfGrenades;
+        numGrenades = startingNumberOfGrenades;
     }
 
     // Update is called once per frame
@@ -27,4 +28,10 @@ public class PlayerGrenadeLauncher : MonoBehaviour
             rb.AddForce(spawnPosition.forward * launchForce, ForceMode.Impulse);
         }
     }
+
+    public void RechargeGrenades(int num)
+    {
+        numGrenades += num;
+    }
+
 }

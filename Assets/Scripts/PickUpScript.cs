@@ -5,7 +5,7 @@ using UnityEngine;
 public class PickUpScript : MonoBehaviour
 {
     //what type of pickup
-    public enum PickUpType {health, battery };
+    public enum PickUpType {health, battery, grenade };
     public PickUpType type = PickUpType.health;
 
     [Tooltip("How much will this pack give")]
@@ -57,6 +57,12 @@ public class PickUpScript : MonoBehaviour
                     //get the damage script
                     var playerShootingScript = other.GetComponent<PlayerShootingScript>();
                     playerShootingScript.RechargeBattery(amount);
+                    StartCoroutine(Collected());
+                    break;
+                case PickUpType.grenade:
+                    var playerGrenadeScript = other.GetComponent<PlayerGrenadeLauncher>();
+                    //recharge the grenades
+                    playerGrenadeScript.RechargeGrenades((int)amount);
                     StartCoroutine(Collected());
                     break;
                 default:

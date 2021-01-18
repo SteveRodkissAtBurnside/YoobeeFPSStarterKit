@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     [Range(3f, 15f)]
     public float jumpSpeed = 5f;
 
+    private Vector3 move;
 
     // Start is called before the first frame update
     void Start()
@@ -40,16 +41,21 @@ public class PlayerMovement : MonoBehaviour
     {
         GetPlayerInput();
         HandleMouseInput();
-        Vector3 move = transform.TransformVector(playerInput * playerSpeed);
+        move = transform.TransformVector(playerInput * playerSpeed);
         //now gravity
-        if (cc.isGrounded)
+        if (CloseToGround())
         {
             //set it to be a little down
-            yVelocity = -gravity * Time.deltaTime;
+
             if (Input.GetButtonDown("Jump"))
             {
                 //jump!
                 yVelocity = jumpSpeed;
+            }
+            else
+            {
+                //kind of zero out the y velocity
+                yVelocity = 0f;
             }
         }
         else
@@ -57,17 +63,17 @@ public class PlayerMovement : MonoBehaviour
             //accelerate downwards
             yVelocity -= gravity * Time.deltaTime;
         }
-
-        //use the y velocity in the move variable
+        //set the y velocity of the move vector
         move.y = yVelocity;
-        //and move
-        cc.Move(move * Time.deltaTime);      
+
+        //move it
+        cc.Move(move * Time.deltaTime);
     }
 
 
     private void HandleMouseInput()
     {
-        transform.Rotate(0, Input.GetAxis("Mouse X") * mouseSensitivity,0);
+        transform.Rotate(0, Input.GetAxis("Mouse X") * mouseSensitivity, 0);
         pitch -= Input.GetAxis("Mouse Y") * mouseSensitivity;
         pitch = Mathf.Clamp(pitch, -45, 45);
         cameraTransform.localRotation = Quaternion.Euler(pitch, 0, 0);
@@ -84,10 +90,19 @@ public class PlayerMovement : MonoBehaviour
 
     void HideCursor(bool state)
     {
-        Cursor.lockState = state ? CursorLockMode.Locked:CursorLockMode.None;
-        Cursor.visible = state ? false:true;
+        Cursor.lockState = state ? CursorLockMode.Locked : CursorLockMode.None;
+        Cursor.visible = state ? false : true;
     }
 
-
-
+    bool CloseToGround()
+    {
+        bool result = false;
+        Ray ray = new Ray(transform.position, Vector3.down);
+        //cast a ray down that is slightly bugger than the player- if it hits we are close to the ground
+        if (Physics.Raycast(ray,1.2f))
+        {
+            result = true;
+        }
+        return result;
+    }
 }
