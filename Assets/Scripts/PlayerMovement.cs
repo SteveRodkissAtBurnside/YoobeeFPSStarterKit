@@ -43,26 +43,21 @@ public class PlayerMovement : MonoBehaviour
         HandleMouseInput();
         move = transform.TransformVector(playerInput * playerSpeed);
         //now gravity
-        if (CloseToGround())
+        if (CloseToGround() && yVelocity < 0f)
         {
             //set it to be a little down
-
+            yVelocity = -gravity * Time.deltaTime;
             if (Input.GetButtonDown("Jump"))
             {
                 //jump!
                 yVelocity = jumpSpeed;
             }
-            else
-            {
-                //kind of zero out the y velocity
-                yVelocity = 0f;
-            }
         }
-        else
-        {
-            //accelerate downwards
-            yVelocity -= gravity * Time.deltaTime;
-        }
+      
+        
+        //accelerate downwards
+        yVelocity -= gravity * Time.deltaTime;
+        
         //set the y velocity of the move vector
         move.y = yVelocity;
 
@@ -99,10 +94,13 @@ public class PlayerMovement : MonoBehaviour
         bool result = false;
         Ray ray = new Ray(transform.position, Vector3.down);
         //cast a ray down that is slightly bugger than the player- if it hits we are close to the ground
-        if (Physics.Raycast(ray,1.2f))
+        if (Physics.Raycast(ray,1.1f))
         {
             result = true;
         }
         return result;
     }
+
+   
+
 }

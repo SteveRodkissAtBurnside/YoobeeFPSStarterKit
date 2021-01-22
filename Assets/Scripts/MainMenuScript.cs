@@ -22,6 +22,11 @@ public class MainMenuScript : MonoBehaviour
         loadingBarPanel.SetActive(false);
     }
 
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
 
     public void PlayGame()
     {

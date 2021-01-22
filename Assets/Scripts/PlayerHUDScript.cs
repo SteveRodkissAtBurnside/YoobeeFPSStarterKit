@@ -13,6 +13,10 @@ public class PlayerHUDScript : MonoBehaviour
     public Text batteryText;
     public Image batteryIndicaterImage;
     public GameObject messagePanel;
+
+    public GameObject pauseMenuPanel;
+    bool pauseMenuActive = false;
+
     //get the damage script of the player
     Damage playerDamage;
     //get the shooting script for the player
@@ -26,6 +30,7 @@ public class PlayerHUDScript : MonoBehaviour
         playerDamage = player.GetComponent<Damage>();
         playerShootingScript = player.GetComponent<PlayerShootingScript>();
         messagePanel.SetActive(false);
+        pauseMenuPanel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -35,5 +40,14 @@ public class PlayerHUDScript : MonoBehaviour
         healthText.text = $"{playerDamage.GetHealthPercent():0}%";
         batteryText.text = $"{playerShootingScript.GetBatteryPercent():0}";
         batteryIndicaterImage.fillAmount = playerShootingScript.GetBatteryPercent()/100f;
+
+        pauseMenuPanel.SetActive(pauseMenuActive);
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            pauseMenuActive = !pauseMenuActive;
+        }
+
+
     }
 }
